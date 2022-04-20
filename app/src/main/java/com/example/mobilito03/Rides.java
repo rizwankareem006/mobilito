@@ -22,9 +22,7 @@ public class Rides {
     private int noSeats;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private int waitingTime;
     private int expectedAmount;
-    private int amountPaid;
     private Locations startLocation;
     private Locations endLocation;
     private boolean booked;
@@ -79,7 +77,7 @@ public class Rides {
         this.booked = booked;
     }
 
-    public Rides(int rideId, Users provider, Users taker, int noProviderCopassengers, int noTakerCopassengers, String vehicleNumber, String vehicleModel, int noSeats, LocalDateTime startTime, LocalDateTime endTime, int waitingTime, int expectedAmount, int amountPaid, Locations startLocation, Locations endLocation, boolean booked) {
+    public Rides(int rideId, Users provider, Users taker, int noProviderCopassengers, int noTakerCopassengers, String vehicleNumber, String vehicleModel, int noSeats, LocalDateTime startTime, LocalDateTime endTime, int expectedAmount, Locations startLocation, Locations endLocation, boolean booked) {
         this.rideId = rideId;
         this.provider = provider;
         this.taker = taker;
@@ -90,9 +88,7 @@ public class Rides {
         this.noSeats = noSeats;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.waitingTime = waitingTime;
         this.expectedAmount = expectedAmount;
-        this.amountPaid = amountPaid;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.booked = booked;
@@ -125,11 +121,9 @@ public class Rides {
                     LocalDateTime.parse(cursor.getString(8)),
                     LocalDateTime.parse(cursor.getString(9)),
                     cursor.getInt(10),
-                    cursor.getInt(11),
-                    cursor.getInt(12),
-                    Locations.getLocation(context, cursor.getInt(13)),
-                    Locations.getLocation(context, cursor.getInt(14)),
-                    cursor.getInt(15) != 0
+                    Locations.getLocation(context, cursor.getInt(11)),
+                    Locations.getLocation(context, cursor.getInt(12)),
+                    cursor.getInt(13) != 0
             );
         }
         db.close();
@@ -325,9 +319,7 @@ public class Rides {
         contentValues.put(MobilitoContract.Rides.COLUMN_NO_SEATS, noSeats);
         contentValues.put(MobilitoContract.Rides.COLUMN_START_TIME, startTime.toString());
         contentValues.put(MobilitoContract.Rides.COLUMN_END_TIME, endTime.toString());
-        contentValues.put(MobilitoContract.Rides.COLUMN_WAITING_TIME, waitingTime);
         contentValues.put(MobilitoContract.Rides.COLUMN_EXPECTED_AMOUNT, expectedAmount);
-        contentValues.put(MobilitoContract.Rides.COLUMN_AMOUNT_PAID, amountPaid);
         contentValues.put(MobilitoContract.Rides.COLUMN_START_LOCATION, startLocation.getLocationId());
         contentValues.put(MobilitoContract.Rides.COLUMN_END_LOCATION, endLocation.getLocationId());
         contentValues.put(MobilitoContract.Rides.COLUMN_BOOKED, booked);
@@ -453,28 +445,12 @@ public class Rides {
         this.endTime = endTime;
     }
 
-    public int getWaitingTime() {
-        return waitingTime;
-    }
-
-    public void setWaitingTime(int waitingTime) {
-        this.waitingTime = waitingTime;
-    }
-
     public int getExpectedAmount() {
         return expectedAmount;
     }
 
     public void setExpectedAmount(int expectedAmount) {
         this.expectedAmount = expectedAmount;
-    }
-
-    public int getAmountPaid() {
-        return amountPaid;
-    }
-
-    public void setAmountPaid(int amountPaid) {
-        this.amountPaid = amountPaid;
     }
 
     public Locations getStartLocation() {
@@ -514,9 +490,7 @@ public class Rides {
                 ", noSeats=" + noSeats +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
-                ", waitingTime=" + waitingTime +
                 ", expectedAmount=" + expectedAmount +
-                ", amountPaid=" + amountPaid +
                 ", startLocation=" + startLocation +
                 ", endLocation=" + endLocation +
                 ", booked=" + booked +

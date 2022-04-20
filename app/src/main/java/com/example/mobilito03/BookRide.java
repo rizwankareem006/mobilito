@@ -31,6 +31,9 @@ public class BookRide extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_ride);
 
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+
         EditText copassengerText = findViewById(R.id.bookCopassengers);
         EditText startTimeText = findViewById(R.id.bookStartTime);
         EditText waitingTimeText = findViewById(R.id.bookWaitingTime);
@@ -70,15 +73,21 @@ public class BookRide extends AppCompatActivity {
                 Locations endLocation = Locations.getLocation(getApplicationContext(), (int)endLocationId);
                 LocalDateTime startDateTime = LocalDateTime.of(LocalDate.now(), startTime);
                 Rides[] rides = Rides.getRides(getApplicationContext(), copassengers, startDateTime, waitingTime, amount);
-                ArrayList<Rides> validRides = new ArrayList<>();
+                ArrayList<Integer> validRides = new ArrayList<>();
 
                 for (Rides ride :
                         rides) {
                     double[] distances = calculateDistances(startLocation, endLocation, ride.getStartLocation(), ride.getEndLocation());
-
+                    if (distances[0] <= distance && distances[1] <= distance) {
+                        validRides.add(ride.getRideId());
+                    }
                 }
-                
-                
+
+                Intent chooseRideIntent = new Intent(getApplicationContext(), ChooseRide.class);
+                chooseRideIntent.putExtra("username", username);
+                chooseRideIntent.putExtra("rideIds", validRides);
+                chooseRideIntent.putExtra("copassengers", copassengers);
+                startActivity(chooseRideIntent);
             }
         });
     }
