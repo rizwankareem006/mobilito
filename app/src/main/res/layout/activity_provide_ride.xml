@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProvideRide">
+
+
+    <Button
+        android:id="@+id/provideRide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/provide_ride"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945" />
+
+    <Button
+        android:id="@+id/provideEndLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/end_location"
+        app:layout_constraintBottom_toTopOf="@+id/provideRide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
+
+    <Button
+        android:id="@+id/provideStartLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_location"
+        app:layout_constraintBottom_toTopOf="@+id/provideEndLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.916" />
+
+    <EditText
+        android:id="@+id/provideStartAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:hint="@string/start_address"
+        android:focusable="false"
+        android:cursorVisible="false"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/provideEndAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.911" />
+
+    <EditText
+        android:id="@+id/provideEndAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:hint="@string/end_address"
+        android:focusable="false"
+        android:cursorVisible="false"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/provideRide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.941" />
+
+    <EditText
+        android:id="@+id/provideExpectedAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/expected_amount"
+        app:layout_constraintBottom_toTopOf="@+id/provideRide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.662" />
+
+    <EditText
+        android:id="@+id/provideStartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        android:hint="@string/start_time"
+        app:layout_constraintBottom_toTopOf="@+id/provideExpectedAmount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913" />
+
+    <EditText
+        android:id="@+id/provideNoSeats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/no_seats"
+        app:layout_constraintBottom_toTopOf="@+id/provideStartTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913" />
+
+    <EditText
+        android:id="@+id/provideVehicleModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/vehicle_model"
+        app:layout_constraintBottom_toTopOf="@+id/provideNoSeats"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.894" />
+
+    <EditText
+        android:id="@+id/provideVehicleNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/vehicle_number"
+        app:layout_constraintBottom_toTopOf="@+id/provideVehicleModel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.829" />
+
+    <EditText
+        android:id="@+id/provideNoCopassengers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/no_copassengers"
+        app:layout_constraintBottom_toTopOf="@+id/provideVehicleNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
