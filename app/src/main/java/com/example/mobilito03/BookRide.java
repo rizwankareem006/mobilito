@@ -1,10 +1,12 @@
 package com.example.mobilito03;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +32,9 @@ public class BookRide extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_ride);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
@@ -157,5 +162,10 @@ public class BookRide extends AppCompatActivity {
             Log.d(TAG, "Unknown request code!");
             //Toast.makeText(getApplicationContext(), "Unknown request code!", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        finish();
+        return true;
     }
 }

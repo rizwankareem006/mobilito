@@ -75,5 +75,14 @@ public class Home extends AppCompatActivity {
                 startActivity(bookRideIntent);
             }
         });
+
+        toBookedRides.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent bookedRidesIntent = new Intent(getApplicationContext(), BookedRides.class);
+                bookedRidesIntent.putExtra("username", finalUsername);
+                startActivity(bookedRidesIntent);
+            }
+        });
     }
 }

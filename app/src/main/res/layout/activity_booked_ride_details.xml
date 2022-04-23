@@ -4,40 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChooseRideDetails">
+    tools:context=".BookedRideDetails">
 
 
     <Button
-        android:id="@+id/chooseDetLocation"
+        android:id="@+id/bookedDetLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/check_location"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetBookRide"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetFinishRide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.956" />
 
     <TextView
-        android:id="@+id/chooseDetExpectedAmount"
+        android:id="@+id/bookedDetExpectedAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="104dp"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetLocation"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetLocation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/chooseDetExpectedAmountText"
+        app:layout_constraintStart_toEndOf="@+id/bookedDetExpectedAmountText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.892" />
 
     <TextView
-        android:id="@+id/chooseDetExpectedAmountText"
+        android:id="@+id/bookedDetExpectedAmountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/expected_amount"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetLocation"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetLocation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,24 +45,24 @@
         app:layout_constraintVertical_bias="0.892" />
 
     <TextView
-        android:id="@+id/chooseDetStartTime"
+        android:id="@+id/bookedDetStartTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetExpectedAmount"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetExpectedAmount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.593"
-        app:layout_constraintStart_toEndOf="@+id/chooseDetStartTimeText"
+        app:layout_constraintStart_toEndOf="@+id/bookedDetStartTimeText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.896" />
 
     <TextView
-        android:id="@+id/chooseDetStartTimeText"
+        android:id="@+id/bookedDetStartTimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start_time"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetExpectedAmountText"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetExpectedAmountText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,24 +70,24 @@
         app:layout_constraintVertical_bias="0.896" />
 
     <TextView
-        android:id="@+id/chooseDetNoSeats"
+        android:id="@+id/bookedDetNoSeats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetStartTime"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetStartTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.543"
-        app:layout_constraintStart_toEndOf="@+id/chooseDetNoSeatsText"
+        app:layout_constraintStart_toEndOf="@+id/bookedDetNoSeatsText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.897" />
 
     <TextView
-        android:id="@+id/chooseDetNoSeatsText"
+        android:id="@+id/bookedDetNoSeatsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no_seats"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetStartTimeText"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetStartTimeText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,24 +95,24 @@
         app:layout_constraintVertical_bias="0.897" />
 
     <TextView
-        android:id="@+id/chooseDetVehicleModel"
+        android:id="@+id/bookedDetVehicleModel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetNoSeats"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetNoSeats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.568"
-        app:layout_constraintStart_toEndOf="@+id/chooseDetVehicleModelText"
+        app:layout_constraintStart_toEndOf="@+id/bookedDetVehicleModelText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.856" />
 
     <TextView
-        android:id="@+id/chooseDetVehicleModelText"
+        android:id="@+id/bookedDetVehicleModelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/vehicle_model"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetNoSeatsText"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetNoSeatsText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.154"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,24 +120,24 @@
         app:layout_constraintVertical_bias="0.856" />
 
     <TextView
-        android:id="@+id/chooseDetVehicleNumber"
+        android:id="@+id/bookedDetVehicleNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetVehicleModel"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetVehicleModel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.541"
-        app:layout_constraintStart_toEndOf="@+id/chooseDetVehicleNumberText"
+        app:layout_constraintStart_toEndOf="@+id/bookedDetVehicleNumberText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.782" />
 
     <TextView
-        android:id="@+id/chooseDetVehicleNumberText"
+        android:id="@+id/bookedDetVehicleNumberText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/vehicle_number"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetVehicleModelText"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetVehicleModelText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.154"
         app:layout_constraintStart_toStartOf="parent"
@@ -145,24 +145,24 @@
         app:layout_constraintVertical_bias="0.782" />
 
     <TextView
-        android:id="@+id/chooseDetPassengers"
+        android:id="@+id/bookedDetPassengers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetVehicleNumber"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetVehicleNumber"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.395"
-        app:layout_constraintStart_toEndOf="@+id/chooseDetPassengersText"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toEndOf="@+id/bookedDetPassengersText"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.528" />
+        app:layout_constraintVertical_bias="0.609" />
 
     <TextView
-        android:id="@+id/chooseDetPassengersText"
+        android:id="@+id/bookedDetPassengersText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no_passengers"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetVehicleNumberText"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetVehicleNumberText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
@@ -170,24 +170,24 @@
         app:layout_constraintVertical_bias="0.611" />
 
     <TextView
-        android:id="@+id/chooseDetProvider"
+        android:id="@+id/bookedDetProvider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetPassengers"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetPassengers"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.632"
-        app:layout_constraintStart_toEndOf="@+id/chooseDetProviderText"
+        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintStart_toEndOf="@+id/bookedDetProviderText"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.63" />
+        app:layout_constraintVertical_bias="0.518" />
 
     <TextView
-        android:id="@+id/chooseDetProviderText"
+        android:id="@+id/bookedDetProviderText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/provider"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/chooseDetPassengersText"
+        app:layout_constraintBottom_toTopOf="@+id/bookedDetPassengersText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
@@ -195,10 +195,10 @@
         app:layout_constraintVertical_bias="0.517"/>
 
     <Button
-        android:id="@+id/chooseDetBookRide"
+        android:id="@+id/bookedDetFinishRide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/book_ride"
+        android:text="@string/finish_ride"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

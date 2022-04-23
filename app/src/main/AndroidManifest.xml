@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobilito03">
         <activity
+            android:name=".BookedRideDetails"
+            android:exported="false" />
+        <activity
+            android:name=".BookedRides"
+            android:exported="false" />
+        <activity
             android:name=".ChooseRideDetails"
             android:exported="false" />
         <activity

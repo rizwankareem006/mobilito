@@ -7,41 +7,33 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
+public class BookedRides extends AppCompatActivity {
 
-public class ChooseRide extends AppCompatActivity {
-
+    public static final String TAG = "BookedRides";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_ride);
+        setContentView(R.layout.activity_booked_rides);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
-        int copassengers = intent.getIntExtra("copassengers", 0);
-
-        ArrayList<Integer> rideIds = intent.getIntegerArrayListExtra("rideIds");
-        Rides[] rides = new Rides[rideIds.size()];
-        int i = 0;
-        for (int rideId :
-                rideIds) {
-            rides[i++] = Rides.getRideChoose(getApplicationContext(), rideId);
-        }
-
-        RecyclerView recyclerView = findViewById(R.id.chooseRecyclerView);
-        ChooseRideAdapter adapter = new ChooseRideAdapter(getApplicationContext(), rides, new ClickListener() {
+        Log.d(TAG, "Before getting ride!");
+        Rides[] rides = Rides.getBookedRides(getApplicationContext(), username);
+        Log.d(TAG, "After getting ride!");
+        RecyclerView recyclerView = findViewById(R.id.bookedRecyclerView);
+        BookedRidesAdapter adapter = new BookedRidesAdapter(getApplicationContext(), rides, new ClickListener() {
             @Override
             public void onPositionClicked(int position) {
                 // callback performed on click
-                Intent detailsIntent = new Intent(getApplicationContext(), ChooseRideDetails.class);
+                Intent detailsIntent = new Intent(getApplicationContext(), BookedRideDetails.class);
                 detailsIntent.putExtra("username", username);
                 detailsIntent.putExtra("rideId", rides[position].getRideId());
-                detailsIntent.putExtra("copassengers", copassengers);
                 startActivity(detailsIntent);
             }
         });

@@ -11,12 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ChooseRideDetails extends AppCompatActivity {
+public class BookedRideDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_ride_details);
+        setContentView(R.layout.activity_booked_ride_details);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -24,22 +24,21 @@ public class ChooseRideDetails extends AppCompatActivity {
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
         int rideId = intent.getIntExtra("rideId", 0);
-        int copassengers = intent.getIntExtra("copassengers", 0);
 
 
-        Rides ride = Rides.getRideChooseDetails(getApplicationContext(), rideId);
-        TextView provider = findViewById(R.id.chooseDetProvider);
-        TextView passengers = findViewById(R.id.chooseDetPassengers);
-        TextView vehicleNumber = findViewById(R.id.chooseDetVehicleNumber);
-        TextView vehicleModel = findViewById(R.id.chooseDetVehicleModel);
-        TextView noSeats = findViewById(R.id.chooseDetNoSeats);
-        TextView startTime = findViewById(R.id.chooseDetStartTime);
-        TextView expectedAmount = findViewById(R.id.chooseDetExpectedAmount);
-        Button location = findViewById(R.id.chooseDetLocation);
-        Button bookRide = findViewById(R.id.chooseDetBookRide);
+        Rides ride = Rides.getBookedRideDetails(getApplicationContext(), rideId);
+        TextView provider = findViewById(R.id.bookedDetProvider);
+        TextView passengers = findViewById(R.id.bookedDetPassengers);
+        TextView vehicleNumber = findViewById(R.id.bookedDetVehicleNumber);
+        TextView vehicleModel = findViewById(R.id.bookedDetVehicleModel);
+        TextView noSeats = findViewById(R.id.bookedDetNoSeats);
+        TextView startTime = findViewById(R.id.bookedDetStartTime);
+        TextView expectedAmount = findViewById(R.id.bookedDetExpectedAmount);
+        Button location = findViewById(R.id.bookedDetLocation);
+        Button finishRide = findViewById(R.id.bookedDetFinishRide);
 
         provider.setText(ride.getProvider().getFullName());
-        passengers.setText(String.valueOf(ride.getNoProviderCopassengers()+copassengers));
+        passengers.setText(String.valueOf(ride.getNoProviderCopassengers()+ride.getNoTakerCopassengers()));
         vehicleNumber.setText(ride.getVehicleNumber());
         vehicleModel.setText(ride.getVehicleModel());
         noSeats.setText(String.valueOf(ride.getNoSeats()));
@@ -57,22 +56,10 @@ public class ChooseRideDetails extends AppCompatActivity {
             }
         });
 
-        bookRide.setOnClickListener(new View.OnClickListener() {
+        finishRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int no_updated = Rides.updateRide(getApplicationContext(), rideId, username, copassengers);
 
-                if (no_updated == 1) {
-                    Toast.makeText(getApplicationContext(), "Booked Successfully!", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "Booking Failed!", Toast.LENGTH_LONG).show();
-                }
-
-                Intent homeIntent = new Intent(getApplicationContext(), Home.class);
-                homeIntent.putExtra("username", username);
-                startActivity(homeIntent);
-                finish();
             }
         });
     }

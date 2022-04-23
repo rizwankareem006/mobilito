@@ -32,8 +32,11 @@ public class ProvideRideDetails extends AppCompatActivity {
         Rides ride = null;
         if (!booked)
             ride = Rides.getRideNB(getApplicationContext(), rideId);
-        else
+        else {
+            Log.d(TAG, "Before fetching rides!");
             ride = Rides.getRideB(getApplicationContext(), rideId);
+            Log.d(TAG, "After fetching rides!");
+        }
         TextView taker = findViewById(R.id.provDetTaker);
         TextView noCopassengers = findViewById(R.id.provDetCopassengers);
         TextView vehicleNumber = findViewById(R.id.provDetVehicleNumber);

@@ -27,6 +27,40 @@ public class Rides {
     private Locations endLocation;
     private boolean booked;
 
+    public Rides(int rideId, Users provider, int noProviderCopassengers, int noTakerCopassengers, String vehicleNumber, String vehicleModel, int noSeats, LocalDateTime startTime, int expectedAmount, Locations startLocation, Locations endLocation) {
+        this.rideId = rideId;
+        this.provider = provider;
+        this.noProviderCopassengers = noProviderCopassengers;
+        this.noTakerCopassengers = noTakerCopassengers;
+        this.vehicleNumber = vehicleNumber;
+        this.vehicleModel = vehicleModel;
+        this.noSeats = noSeats;
+        this.startTime = startTime;
+        this.expectedAmount = expectedAmount;
+        this.startLocation = startLocation;
+        this.endLocation = endLocation;
+    }
+
+    public Rides(int rideId, Users provider, int noProviderCopassengers, String vehicleNumber, String vehicleModel, int noSeats, LocalDateTime startTime, int expectedAmount, Locations startLocation, Locations endLocation) {
+        this.rideId = rideId;
+        this.provider = provider;
+        this.noProviderCopassengers = noProviderCopassengers;
+        this.vehicleNumber = vehicleNumber;
+        this.vehicleModel = vehicleModel;
+        this.noSeats = noSeats;
+        this.startTime = startTime;
+        this.expectedAmount = expectedAmount;
+        this.startLocation = startLocation;
+        this.endLocation = endLocation;
+    }
+
+    public Rides(int rideId, Users provider, LocalDateTime startTime, int expectedAmount) {
+        this.rideId = rideId;
+        this.provider = provider;
+        this.startTime = startTime;
+        this.expectedAmount = expectedAmount;
+    }
+
     public Rides(int rideId, Users provider, int noProviderCopassengers, String vehicleNumber, String vehicleModel, int noSeats, LocalDateTime startTime, int expectedAmount, Locations startLocation, Locations endLocation, boolean booked) {
         this.rideId = rideId;
         this.provider = provider;
@@ -178,7 +212,7 @@ public class Rides {
                         MobilitoContract.Rides.COLUMN_NO_PROVIDER_COPASSENGERS, MobilitoContract.Rides.COLUMN_NO_TAKER_COPASSENGERS,
                         MobilitoContract.Rides.COLUMN_VEHICLE_NUMBER, MobilitoContract.Rides.COLUMN_VEHICLE_MODEL, MobilitoContract.Rides.COLUMN_NO_SEATS,
                         MobilitoContract.Rides.COLUMN_START_TIME, MobilitoContract.Rides.COLUMN_EXPECTED_AMOUNT, MobilitoContract.Rides.COLUMN_START_LOCATION,
-                        MobilitoContract.Rides.COLUMN_END_LOCATION},
+                        MobilitoContract.Rides.COLUMN_END_LOCATION, MobilitoContract.Rides.COLUMN_BOOKED},
                 MobilitoContract.Rides.COLUMN_RIDE_ID + "= ? ",
                 new String[]{String.valueOf(rideId)},
                 null,
@@ -206,6 +240,138 @@ public class Rides {
 
         return ride;
     }
+
+    public static Rides[] getBookedRides(Context context, String username){
+        SQLiteDatabase db = new DatabaseHelper(context).getReadableDatabase();
+
+        Cursor cursor = db.query(
+                MobilitoContract.Rides.TABLE_NAME,
+                new String[]{MobilitoContract.Rides.COLUMN_RIDE_ID, MobilitoContract.Rides.COLUMN_PROVIDER_USERNAME,
+                        MobilitoContract.Rides.COLUMN_START_TIME, MobilitoContract.Rides.COLUMN_EXPECTED_AMOUNT},
+                MobilitoContract.Rides.COLUMN_TAKER_USERNAME + "= ? ",
+                new String[]{String.valueOf(username)},
+                null,
+                null,
+                null
+        );
+
+        Rides[] rides = new Rides[cursor.getCount()];
+        int i = 0;
+        while (cursor.moveToNext()) {
+            rides[i++] = new Rides(cursor.getInt(0),
+                    Users.getUser(context, cursor.getString(1)),
+                    LocalDateTime.parse(cursor.getString(2)),
+                    cursor.getInt(3)
+            );
+        }
+        db.close();
+
+        return rides;
+    }
+
+    public static Rides getBookedRideDetails(Context context, int rideId) {
+
+        SQLiteDatabase db = new DatabaseHelper(context).getReadableDatabase();
+
+        Cursor cursor = db.query(
+                MobilitoContract.Rides.TABLE_NAME,
+                new String[]{MobilitoContract.Rides.COLUMN_RIDE_ID, MobilitoContract.Rides.COLUMN_PROVIDER_USERNAME,
+                        MobilitoContract.Rides.COLUMN_NO_PROVIDER_COPASSENGERS, MobilitoContract.Rides.COLUMN_NO_TAKER_COPASSENGERS,
+                        MobilitoContract.Rides.COLUMN_VEHICLE_NUMBER, MobilitoContract.Rides.COLUMN_VEHICLE_MODEL, MobilitoContract.Rides.COLUMN_NO_SEATS,
+                        MobilitoContract.Rides.COLUMN_START_TIME, MobilitoContract.Rides.COLUMN_EXPECTED_AMOUNT, MobilitoContract.Rides.COLUMN_START_LOCATION,
+                        MobilitoContract.Rides.COLUMN_END_LOCATION},
+                MobilitoContract.Rides.COLUMN_RIDE_ID + "= ? ",
+                new String[]{String.valueOf(rideId)},
+                null,
+                null,
+                null
+        );
+
+        Rides ride = null;
+        if (cursor.moveToFirst()) {
+            ride = new Rides(cursor.getInt(0),
+                    Users.getUser(context, cursor.getString(1)),
+                    cursor.getInt(2),
+                    cursor.getInt(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getInt(6),
+                    LocalDateTime.parse(cursor.getString(7)),
+                    cursor.getInt(8),
+                    Locations.getLocation(context, cursor.getInt(9)),
+                    Locations.getLocation(context, cursor.getInt(10))
+            );
+        }
+        db.close();
+
+        return ride;
+    }
+
+    public static Rides getRideChoose(Context context, int rideId) {
+
+        SQLiteDatabase db = new DatabaseHelper(context).getReadableDatabase();
+
+        Cursor cursor = db.query(
+                MobilitoContract.Rides.TABLE_NAME,
+                new String[]{MobilitoContract.Rides.COLUMN_RIDE_ID, MobilitoContract.Rides.COLUMN_PROVIDER_USERNAME,
+                        MobilitoContract.Rides.COLUMN_START_TIME, MobilitoContract.Rides.COLUMN_EXPECTED_AMOUNT},
+                MobilitoContract.Rides.COLUMN_RIDE_ID + "= ? ",
+                new String[]{String.valueOf(rideId)},
+                null,
+                null,
+                null
+        );
+
+        Rides ride = null;
+        if (cursor.moveToFirst()) {
+            ride = new Rides(cursor.getInt(0),
+                    Users.getUser(context, cursor.getString(1)),
+                    LocalDateTime.parse(cursor.getString(2)),
+                    cursor.getInt(3)
+            );
+        }
+        db.close();
+
+        return ride;
+    }
+
+    public static Rides getRideChooseDetails(Context context, int rideId) {
+
+        SQLiteDatabase db = new DatabaseHelper(context).getReadableDatabase();
+
+        Cursor cursor = db.query(
+                MobilitoContract.Rides.TABLE_NAME,
+                new String[]{MobilitoContract.Rides.COLUMN_RIDE_ID, MobilitoContract.Rides.COLUMN_PROVIDER_USERNAME,
+                        MobilitoContract.Rides.COLUMN_NO_PROVIDER_COPASSENGERS,
+                        MobilitoContract.Rides.COLUMN_VEHICLE_NUMBER, MobilitoContract.Rides.COLUMN_VEHICLE_MODEL, MobilitoContract.Rides.COLUMN_NO_SEATS,
+                        MobilitoContract.Rides.COLUMN_START_TIME, MobilitoContract.Rides.COLUMN_EXPECTED_AMOUNT, MobilitoContract.Rides.COLUMN_START_LOCATION,
+                        MobilitoContract.Rides.COLUMN_END_LOCATION},
+                MobilitoContract.Rides.COLUMN_RIDE_ID + "= ? ",
+                new String[]{String.valueOf(rideId)},
+                null,
+                null,
+                null
+        );
+
+        Rides ride = null;
+        if (cursor.moveToFirst()) {
+            ride = new Rides(cursor.getInt(0),
+                    Users.getUser(context, cursor.getString(1)),
+                    cursor.getInt(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getInt(5),
+                    LocalDateTime.parse(cursor.getString(6)),
+                    cursor.getInt(7),
+                    Locations.getLocation(context, cursor.getInt(8)),
+                    Locations.getLocation(context, cursor.getInt(9))
+            );
+        }
+        db.close();
+
+        return ride;
+    }
+
 
     public static Rides[] getRides(Context context, String providerUsername) {
 
@@ -290,6 +456,8 @@ public class Rides {
         return rides;
     }
 
+
+
     public static long insertRide(Context context,
                                   Users provider,
                                   Users taker,
@@ -300,9 +468,7 @@ public class Rides {
                                   int noSeats,
                                   LocalDateTime startTime,
                                   LocalDateTime endTime,
-                                  int waitingTime,
                                   int expectedAmount,
-                                  int amountPaid,
                                   Locations startLocation,
                                   Locations endLocation,
                                   boolean booked)
@@ -362,6 +528,23 @@ public class Rides {
         db.close();
 
         return newRowId;
+    }
+
+    public static int updateRide(Context context, int rideId, String username, int copassengers) {
+        SQLiteDatabase db = new DatabaseHelper(context).getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MobilitoContract.Rides.COLUMN_TAKER_USERNAME, username);
+        contentValues.put(MobilitoContract.Rides.COLUMN_NO_TAKER_COPASSENGERS, copassengers);
+        contentValues.put(MobilitoContract.Rides.COLUMN_BOOKED, true);
+
+        int no_updated = db.update(MobilitoContract.Rides.TABLE_NAME, contentValues,
+                MobilitoContract.Rides.COLUMN_RIDE_ID + "= ? ",
+                new String[]{String.valueOf(rideId)});
+
+        db.close();
+
+        return no_updated;
     }
 
 
