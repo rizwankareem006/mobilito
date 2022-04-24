@@ -6,12 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".BookedRides">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bookedRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <TextView
+        android:id="@+id/background8"
+        android:layout_width="413dp"
+        android:layout_height="730dp"
+        android:background="#AF1C1C"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/provided_rides_tv2"
+        android:layout_width="251dp"
+        android:layout_height="61dp"
+        android:text="@string/booked_rides"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@id/bookedRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookedRecyclerView"
+        android:layout_width="370dp"
+        android:layout_height="590dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

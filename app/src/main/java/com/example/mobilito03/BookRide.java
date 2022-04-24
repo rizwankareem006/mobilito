@@ -3,6 +3,7 @@ package com.example.mobilito03;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.SphericalUtil;
@@ -18,12 +20,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class BookRide extends AppCompatActivity {
 
     public static final String TAG = "BookRide";
     public static final int START_REQUEST_CODE = 1;
     public static final int END_REQUEST_CODE = 2;
+
+    int hour, minute;
+    EditText startTimeText;
 
     protected long startLocationId = -1;
     protected long endLocationId = -1;
@@ -40,15 +46,21 @@ public class BookRide extends AppCompatActivity {
         String username = intent.getStringExtra("username");
 
         EditText copassengerText = findViewById(R.id.bookCopassengers);
-        EditText startTimeText = findViewById(R.id.bookStartTime);
+        startTimeText = findViewById(R.id.bookStartTime);
         EditText waitingTimeText = findViewById(R.id.bookWaitingTime);
         EditText amountText = findViewById(R.id.bookAmount);
         EditText distanceText = findViewById(R.id.bookDistance);
-
-        Button startLocation = findViewById(R.id.bookStartLocation);
-        Button endLocation = findViewById(R.id.bookEndLocation);
+        EditText startLocation = (EditText) findViewById(R.id.bookStartAddress);
+        EditText endLocation = (EditText) findViewById(R.id.bookEndAddress);
 
         Button chooseRide = findViewById(R.id.bookChooseRide);
+
+        startTimeText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showTimePickerDialog(view);
+            }
+        });
 
         startLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,5 +179,23 @@ public class BookRide extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         finish();
         return true;
+    }
+
+    private void showTimePickerDialog(View view)
+    {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hr, int min) {
+
+                hour = hr;
+                minute = min;
+
+                startTimeText.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+            }
+        };
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
+        timePickerDialog.setTitle("Start Time");
+        timePickerDialog.show();
     }
 }

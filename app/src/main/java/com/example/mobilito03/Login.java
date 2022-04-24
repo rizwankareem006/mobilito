@@ -25,6 +25,7 @@ public class Login extends AppCompatActivity {
 
         Intent intent = getIntent();
         Button loginButton = findViewById(R.id.login);
+        Button signupBtn = (Button) findViewById(R.id.signupBtn);
         EditText usernameText = findViewById(R.id.loginUsername);
         EditText passwordText = findViewById(R.id.loginPassword);
 
@@ -54,6 +55,14 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(Login.this, "Invalid Password!", Toast.LENGTH_LONG).show();
                     }
                 }
+            }
+        });
+
+        signupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Signup.class);
+                startActivity(intent);
             }
         });
 

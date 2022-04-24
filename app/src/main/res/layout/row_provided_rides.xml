@@ -15,14 +15,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="166dp">
+            android:layout_height="166dp"
+            android:background="#FFFFFF">
 
 
             <TextView
                 android:id="@+id/rowBooked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textColor="#AF1C1C"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/rowExpectedAmount"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.717"
@@ -34,7 +36,8 @@
                 android:id="@+id/rowExpectedAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textColor="#AF1C1C"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/rowStartTime"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.717"
@@ -46,7 +49,7 @@
                 android:id="@+id/rowStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.717"
@@ -59,7 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/booked"
-                android:textSize="20dp"
+                android:textColor="#AF1C1C"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/rowBooked"
                 app:layout_constraintHorizontal_bias="0.483"
@@ -72,7 +76,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/expected_amount"
-                android:textSize="20dp"
+                android:textColor="#AF1C1C"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/rowExpectedAmount"
                 app:layout_constraintHorizontal_bias="0.211"
@@ -85,13 +90,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_time"
-                android:textSize="20dp"
+                android:textColor="#AF1C1C"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/rowStartTime"
                 app:layout_constraintHorizontal_bias="0.46"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.803" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="409dp"
+                android:layout_height="12dp"
+                android:background="#AF1C1C"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,14 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".Maps">
 
+    <TextView
+        android:id="@+id/background13"
+        android:layout_width="413dp"
+        android:layout_height="730dp"
+        android:background="#AF1C1C"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <EditText
         android:id="@+id/locationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="Enter Location"
+        android:hint="@string/enter_location"
         android:imeOptions="actionDone"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#80DEEA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
@@ -28,7 +47,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationText">
+        app:layout_constraintTop_toBottomOf="@+id/locationText"
+        android:name="com.example.mobilito03.MapsFragment"
+        tools:layout="@layout/fragment_maps">
 
     </androidx.fragment.app.FragmentContainerView>
 
