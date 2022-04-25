@@ -29,10 +29,7 @@ public final class MobilitoContract {
         public static final String COLUMN_VEHICLE_MODEL = "Vehicle_Model";
         public static final String COLUMN_NO_SEATS = "No_Seats";
         public static final String COLUMN_START_TIME = "Start_Time";
-        public static final String COLUMN_END_TIME = "End_Time";
-        public static final String COLUMN_WAITING_TIME = "Waiting_Time";
         public static final String COLUMN_EXPECTED_AMOUNT = "Expected_Amount";
-        public static final String COLUMN_AMOUNT_PAID = "Amount_Paid";
         public static final String COLUMN_START_LOCATION = "Start_Location";
         public static final String COLUMN_END_LOCATION = "End_Location";
         public static final String COLUMN_BOOKED = "Booked";

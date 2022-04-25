@@ -21,7 +21,6 @@ public class Rides {
     private String vehicleModel;
     private int noSeats;
     private LocalDateTime startTime;
-    private LocalDateTime endTime;
     private int expectedAmount;
     private Locations startLocation;
     private Locations endLocation;
@@ -111,7 +110,7 @@ public class Rides {
         this.booked = booked;
     }
 
-    public Rides(int rideId, Users provider, Users taker, int noProviderCopassengers, int noTakerCopassengers, String vehicleNumber, String vehicleModel, int noSeats, LocalDateTime startTime, LocalDateTime endTime, int expectedAmount, Locations startLocation, Locations endLocation, boolean booked) {
+    public Rides(int rideId, Users provider, Users taker, int noProviderCopassengers, int noTakerCopassengers, String vehicleNumber, String vehicleModel, int noSeats, LocalDateTime startTime, int expectedAmount, Locations startLocation, Locations endLocation, boolean booked) {
         this.rideId = rideId;
         this.provider = provider;
         this.taker = taker;
@@ -121,7 +120,6 @@ public class Rides {
         this.vehicleModel = vehicleModel;
         this.noSeats = noSeats;
         this.startTime = startTime;
-        this.endTime = endTime;
         this.expectedAmount = expectedAmount;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
@@ -153,11 +151,10 @@ public class Rides {
                     cursor.getString(6),
                     cursor.getInt(7),
                     LocalDateTime.parse(cursor.getString(8)),
-                    LocalDateTime.parse(cursor.getString(9)),
-                    cursor.getInt(10),
+                    cursor.getInt(9),
+                    Locations.getLocation(context, cursor.getInt(10)),
                     Locations.getLocation(context, cursor.getInt(11)),
-                    Locations.getLocation(context, cursor.getInt(12)),
-                    cursor.getInt(13) != 0
+                    cursor.getInt(12) != 0
             );
         }
         db.close();
@@ -467,7 +464,6 @@ public class Rides {
                                   String vehicleModel,
                                   int noSeats,
                                   LocalDateTime startTime,
-                                  LocalDateTime endTime,
                                   int expectedAmount,
                                   Locations startLocation,
                                   Locations endLocation,
@@ -484,7 +480,6 @@ public class Rides {
         contentValues.put(MobilitoContract.Rides.COLUMN_VEHICLE_MODEL, vehicleModel);
         contentValues.put(MobilitoContract.Rides.COLUMN_NO_SEATS, noSeats);
         contentValues.put(MobilitoContract.Rides.COLUMN_START_TIME, startTime.toString());
-        contentValues.put(MobilitoContract.Rides.COLUMN_END_TIME, endTime.toString());
         contentValues.put(MobilitoContract.Rides.COLUMN_EXPECTED_AMOUNT, expectedAmount);
         contentValues.put(MobilitoContract.Rides.COLUMN_START_LOCATION, startLocation.getLocationId());
         contentValues.put(MobilitoContract.Rides.COLUMN_END_LOCATION, endLocation.getLocationId());
@@ -547,6 +542,12 @@ public class Rides {
         return no_updated;
     }
 
+    public static int deleteRide(Context context, int rideId) {
+        SQLiteDatabase db = new DatabaseHelper(context).getWritableDatabase();
+        int affected = db.delete(MobilitoContract.Rides.TABLE_NAME, MobilitoContract.Rides.COLUMN_RIDE_ID + "= ?", new String[]{String.valueOf(rideId)});
+        db.close();
+        return affected;
+    }
 
     public int getRideId() {
         return rideId;
@@ -620,14 +621,6 @@ public class Rides {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
     public int getExpectedAmount() {
         return expectedAmount;
     }
@@ -672,7 +665,6 @@ public class Rides {
                 ", vehicleModel='" + vehicleModel + '\'' +
                 ", noSeats=" + noSeats +
                 ", startTime=" + startTime +
-                ", endTime=" + endTime +
                 ", expectedAmount=" + expectedAmount +
                 ", startLocation=" + startLocation +
                 ", endLocation=" + endLocation +

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 
 public class Users {
 
+    private static final String TAG = "Users";
     private String username;
     private String fullName;
     private LocalDate dateOfBirth;
@@ -85,6 +87,20 @@ public class Users {
         db.close();
 
         return newRowId;
+    }
+
+    public static int updateRating(Context context, String username, int value) {
+        Log.d(TAG, "Inside Update");
+        SQLiteDatabase db = new DatabaseHelper(context).getWritableDatabase();
+        Users user = Users.getUser(context, username);
+        ContentValues values = new ContentValues();
+        values.put(MobilitoContract.Users.COLUMN_RATING, user.getRating()+value);
+
+        int affected = db.update(MobilitoContract.Users.TABLE_NAME, values, MobilitoContract.Users.COLUMN_USERNAME + "=?", new String[]{username});
+        Log.d(TAG, String.valueOf(affected));
+        db.close();
+
+        return affected;
     }
 
     public String getUsername() {

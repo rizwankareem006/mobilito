@@ -68,10 +68,6 @@ public class ProvidedRidesAdapter extends RecyclerView.Adapter<ProvidedRidesAdap
 
         @Override
         public void onClick(View v) {
-
-
-            Toast.makeText(v.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-
             listenerRef.get().onPositionClicked(getAdapterPosition());
         }
     }

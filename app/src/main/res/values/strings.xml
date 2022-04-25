@@ -43,6 +43,10 @@
     <string name="new_to_mobilito">New to Mobilito?</string>
     <string name="provider">Provider</string>
     <string name="number_of_passengers">Number of Passengers</string>
+    <string name="enjoy_ride">Did you enjoy the ride?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="rating">Rating</string>
     <string-array name="gender">
         <item>Male</item>
         <item>Female</item>

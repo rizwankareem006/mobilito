@@ -56,10 +56,25 @@ public class BookedRideDetails extends AppCompatActivity {
             }
         });
 
+        provider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent profileIntent = new Intent(getApplicationContext(), Profile.class);
+                profileIntent.putExtra("username", ride.getProvider().getUsername());
+                startActivity(profileIntent);
+            }
+        });
+
         finishRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String providerUsername = ride.getProvider().getUsername();
+                Rides.deleteRide(getApplicationContext(), ride.getRideId());
+                FinishRideDialogFragment frdf = new FinishRideDialogFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("oppUsername", providerUsername);
+                frdf.setArguments(bundle);
+                frdf.show(getFragmentManager(), "dialog");
             }
         });
     }

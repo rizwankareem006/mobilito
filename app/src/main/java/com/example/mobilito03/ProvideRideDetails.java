@@ -45,7 +45,6 @@ public class ProvideRideDetails extends AppCompatActivity {
         TextView startTime = findViewById(R.id.provDetStartTime);
         TextView expectedAmount = findViewById(R.id.provDetExpectedAmount);
         Button location = findViewById(R.id.provDetLocation);
-        Button finishRide = findViewById(R.id.provDetFinishRide);
 
         if (booked)
             taker.setText(ride.getTaker().getFullName());
@@ -71,17 +70,6 @@ public class ProvideRideDetails extends AppCompatActivity {
             }
         });
 
-        if (booked) {
-            finishRide.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-        }
-        else {
-            finishRide.setEnabled(false);
-        }
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
